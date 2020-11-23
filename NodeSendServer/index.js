@@ -11,6 +11,14 @@ connectDB();
 // port
 const port = process.env.PORT || 4000;
 
+// read data from json
+app.use(express.json())
+
+
+// endpoints
+app.use('/api/usuarios', require('./routes/users'));
+
+// run app
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server ok in ${port}`)
 });
