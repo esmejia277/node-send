@@ -20,6 +20,8 @@ app.use(express.json())
 // endpoints
 app.use('/api/usuarios', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/links', require('./routes/links'));
+
 
 
 // run app
