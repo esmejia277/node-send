@@ -1,11 +1,15 @@
 const express = require('express');
 const connectDB = require('./config/db');
-
+const cors = require('cors');
 
 // create server
 const app = express();
 
-
+// configure cors
+const configCors = {
+  origin: process.env.FRONTEND_URL
+}
+app.use( cors(configCors) );
 
 // connect to DB
 connectDB();
@@ -18,7 +22,7 @@ app.use(express.json())
 
 
 // endpoints
-app.use('/api/usuarios', require('./routes/users'));
+app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/links', require('./routes/links'));
 app.use('/api/files', require('./routes/files'));
