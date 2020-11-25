@@ -3,3 +3,6 @@ export const SUCCESSFUL_REGISTER = 'SUCCESSFUL_REGISTER';
 export const ERROR_REGISTER = 'ERROR_REGISTER';
 export const CLEAN_ALERT = 'CLEAN_ALERT';
 
+export const SUCESSFUL_LOGIN = 'SUCESSFUL_LOGIN';
+export const ERROR_LOGIN = 'ERROR_LOGIN';
+export const LOGOUT = 'LOGOUT';
