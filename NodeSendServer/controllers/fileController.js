@@ -1,6 +1,6 @@
 const multer = require('multer');
 const shortid = require('shortid');
-
+const fs = require('fs');
 
 
 exports.uploadFile = async (req, res, next) => {
@@ -36,5 +36,13 @@ exports.uploadFile = async (req, res, next) => {
 
 
 exports.deleteFile = async (req, res) => {
+  console.log('file', req.file)
 
+  try {
+    fs.unlinkSync(__dirname + `/../uploads/${req.file}`);
+    console.log('eliminado');
+    
+  } catch (error) {
+    console.log('error', error);
+  }
 }

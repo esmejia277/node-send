@@ -10,8 +10,4 @@ router.post('/',
 
 )
 
-router.post('/:id',
-  fileController.deleteFile
-)
-
 module.exports = router;

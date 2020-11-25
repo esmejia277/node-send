@@ -2,6 +2,7 @@ const Links = require('../models/Link');
 const shortid = require('shortid');
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
+const Link = require('../models/Link');
 
 exports.newLink = async (req, res, next) => {
 
@@ -46,5 +47,37 @@ exports.newLink = async (req, res, next) => {
     
   } catch (error) {
     console.error(error);
+  }
+}
+
+
+exports.getLink = async (req, res, next) => {
+  
+  const { url } = req.params;
+
+  // check if the link exists
+  const link = await Links.findOne({ url });
+
+  if (!link) {
+    res.status(404).json({ msg: 'Link does not exists'});
+    return next();
+  }
+
+  const { name, downloads } = link;
+
+  res.json({ file: name })
+
+  // if number of downloads is equal to 1, delete de file
+  if (downloads === 1 ) {
+    req.file = name;
+    
+    await Links.findOneAndRemove(req.params.url);
+    
+    next();
+    
+  } else {
+    // if number of downloads is greater than 1, reduce 1 
+    link.downloads--;
+    await link.save()
   }
 }
