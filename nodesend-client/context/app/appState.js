@@ -18,7 +18,11 @@ const AppState = ({ children }) => {
     msgFile: null,
     name: '',
     originalName: '',
-    loading: false
+    loading: false,
+    downloads: 1,
+    password: '',
+    author: null,
+    url: ''
   }
 
   // create dispatch and stawte
@@ -65,6 +69,27 @@ const AppState = ({ children }) => {
     }, 3000);
   }
 
+  const createLink = async () => {
+    const data = {
+      name: state.name,
+      original_name: state.originalName,
+      downloads: state.downloads,
+      password: state.password,
+      author: state.author,
+    }
+    console.log(data);
+
+    try {
+      const response = await axiosClient.post('/api/links', data);
+      dispatch({
+        type: CREATE_LINK_SUCCESS,
+        payload: response.data.msg
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
 
   return (
@@ -74,8 +99,13 @@ const AppState = ({ children }) => {
         name: state.name,
         originalName: state.originalName,
         loading: state.loading,
+        downloads: state.downloads,
+        password: state.password,
+        author: state.author,
+        url: state.url,
         showAlert,
-        uploadFile
+        uploadFile,
+        createLink
       }}
     
     >

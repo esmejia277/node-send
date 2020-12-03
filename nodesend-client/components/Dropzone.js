@@ -6,7 +6,7 @@ const Dropzone = () => {
   
   // connect to state
   const AppContext = useContext(appContext);
-  const { showAlert, uploadFile, loading } = AppContext;
+  const { showAlert, uploadFile, loading, createLink } = AppContext;
 
 
 
@@ -25,9 +25,7 @@ const Dropzone = () => {
   }
 
 
-  const createLink = () => {
-    console.log('creando en lace')
-  }
+
 
 
   // Get content from 

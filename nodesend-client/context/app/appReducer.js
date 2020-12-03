@@ -39,6 +39,11 @@ const appReducer = (state, action) => {
         ...state,
         loading: true
       }
+    case CREATE_LINK_SUCCESS:
+      return {
+        ...state,
+        url: action.payload
+      }
 
     default:
       return state
