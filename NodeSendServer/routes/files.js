@@ -8,6 +8,10 @@ router.post('/',
   auth,
   fileController.uploadFile
 
+);
+
+router.get('/:file',
+  fileController.download
 )
 
 module.exports = router;

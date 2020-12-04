@@ -52,6 +52,14 @@ exports.newLink = async (req, res, next) => {
   }
 }
 
+exports.allLinks = async (req, res) => {
+  try {
+    const links = await Links.find({}).select('url -_id');
+    res.json({links})
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 exports.getLink = async (req, res, next) => {
   
@@ -68,6 +76,8 @@ exports.getLink = async (req, res, next) => {
   const { name, downloads } = link;
 
   res.json({ file: name })
+
+  return;
 
   // if number of downloads is equal to 1, delete de file
   if (downloads === 1 ) {
