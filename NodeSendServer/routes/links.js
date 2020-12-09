@@ -22,8 +22,7 @@ router.get('/',
 
 
 router.get('/:url',
-  linksController.getLink,
-  fileController.deleteFile
+  linksController.getLink
 );
 
 

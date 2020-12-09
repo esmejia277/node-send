@@ -11,7 +11,8 @@ router.post('/',
 );
 
 router.get('/:file',
-  fileController.download
+  fileController.download,
+  fileController.deleteFile
 )
 
 module.exports = router;

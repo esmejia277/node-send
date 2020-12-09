@@ -9,7 +9,8 @@ import {
   UPLOAD_FILE_ERROR,
   UPLOAD_FILE_LOADING,
   CREATE_LINK_SUCCESS,
-  CREATE_LINK_ERROR
+  CREATE_LINK_ERROR,
+  CLEAN_STATE
 } from '../../types';
 
 const AppState = ({ children }) => {
@@ -90,6 +91,12 @@ const AppState = ({ children }) => {
     }
   }
 
+  const cleanState = () => {
+    dispatch({
+      type: CLEAN_STATE,
+    });
+  }
+
 
 
   return (
@@ -103,6 +110,7 @@ const AppState = ({ children }) => {
         password: state.password,
         author: state.author,
         url: state.url,
+        cleanState,
         showAlert,
         uploadFile,
         createLink
