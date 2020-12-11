@@ -73,9 +73,44 @@ exports.getLink = async (req, res, next) => {
     return next();
   }
 
-  const { name } = link;
 
-  res.json({ file: name })
+  res.json({ file: link.name, password: false })
 
   next();
+}
+
+// if links has a password
+exports.hasPassword = async (req, res, next) => {
+
+  const { url } = req.params;
+
+  // check if the link exists
+  const link = await Links.findOne({ url });
+
+  if (!link) {
+    res.status(404).json({ msg: 'Link does not exists'});
+    return next();
+  }
+
+  if (link.password) {
+    return res.json({ password: true, link: link.url, file: link.name });
+  }
+
+  next();
+}
+
+// Verify files' password
+exports.verifyPassword = async (req, res, next) => {
+  const { url } = req.params;
+  const { password } = req.body;
+
+  const link = await Links.findOne({url});
+  if (bcrypt.compareSync(password, link.password)) {
+    // Allow download
+    next();
+  } else {
+    return res.status(401).json({msg: 'Wrong password'});
+  }
+
+
 }

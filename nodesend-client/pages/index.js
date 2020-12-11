@@ -18,7 +18,10 @@ const Index = () => {
   
 
   useEffect(() => {
-    authenticatedUser();
+    const token = localStorage.getItem('token');
+    if (token) {
+      authenticatedUser();
+    }
   }, [])
 
   return ( 

@@ -6,7 +6,9 @@ import {
   UPLOAD_FILE_LOADING,
   CREATE_LINK_SUCCESS,
   CREATE_LINK_ERROR,
-  CLEAN_STATE
+  CLEAN_STATE,
+  ADD_PASSWORD,
+  ADD_DOWNLOAD_LIMIT
   
 } from '../../types';
 
@@ -45,6 +47,16 @@ const appReducer = (state, action) => {
       return {
         ...state,
         url: action.payload
+      }
+    case ADD_PASSWORD:
+      return {
+        ...state,
+        password: action.payload
+      }
+    case ADD_DOWNLOAD_LIMIT:
+      return {
+        ...state,
+        downloads: action.payload
       }
     case CLEAN_STATE:
       return {

@@ -1,12 +1,19 @@
 import React, { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import appContext from '../context/app/appContext';
+import authContext from '../context/auth/authContext';
+import Form from './Form';
+
 
 const Dropzone = () => {
   
   // connect to state
   const AppContext = useContext(appContext);
   const { showAlert, uploadFile, loading, createLink } = AppContext;
+
+  const AuthContext = useContext(authContext);
+  const { user, authenticated } = AuthContext;
+
 
 
 
@@ -50,6 +57,12 @@ const Dropzone = () => {
           <ul>
             {files}
           </ul>
+
+          {
+            authenticated ? (
+              <Form />
+            ) : null
+          }
 
           { loading ? <p className="my-10 text-center text-gray-500 text-bold">Subiendo archivo </p> : 
           

@@ -10,7 +10,9 @@ import {
   UPLOAD_FILE_LOADING,
   CREATE_LINK_SUCCESS,
   CREATE_LINK_ERROR,
-  CLEAN_STATE
+  CLEAN_STATE,
+  ADD_PASSWORD,
+  ADD_DOWNLOAD_LIMIT
 } from '../../types';
 
 const AppState = ({ children }) => {
@@ -97,7 +99,19 @@ const AppState = ({ children }) => {
     });
   }
 
+  const addPassword = password => {
+    dispatch({
+      type: ADD_PASSWORD,
+      payload: password
+    });
+  }
 
+  const addDownloadLimit = limit => {
+    dispatch({
+      type: ADD_DOWNLOAD_LIMIT,
+      payload: limit
+    })
+  }
 
   return (
     <appContext.Provider
@@ -113,7 +127,9 @@ const AppState = ({ children }) => {
         cleanState,
         showAlert,
         uploadFile,
-        createLink
+        createLink,
+        addPassword,
+        addDownloadLimit
       }}
     
     >
