@@ -12,7 +12,7 @@ exports.newLink = async (req, res, next) => {
     return res.status(400).json({ errors: errors.array() })
   }
   
-  console.log(req.body)
+  console.log("bodyyy", req.body)
 
   const { original_name, name } = req.body;
   
